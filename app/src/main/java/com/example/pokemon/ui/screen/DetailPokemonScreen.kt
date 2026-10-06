@@ -42,7 +42,7 @@ import com.example.pokemon.util.PokemonConstants.IMG_URL
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailPokemonScreen(productId: Int, navController: NavController?, viewModel: PokemonViewModel) {
+fun DetailPokemonScreen(pokemonId: Int, navController: NavController?, viewModel: PokemonViewModel) {
     val uiState by viewModel.uiState.collectAsState()
 
     when (val state = uiState) {
@@ -57,7 +57,7 @@ fun DetailPokemonScreen(productId: Int, navController: NavController?, viewModel
             }
         }
         is PokemonUiState.Success -> {
-            val pokemon = state.pokemon.find { it.id == productId }
+            val pokemon = state.pokemon.find { it.id == pokemonId }
 
             if (pokemon == null) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -101,7 +101,7 @@ fun StatelessDetailPokemon(
                 .padding(paddingValues)
                 .verticalScroll(rememberScrollState()),
         ) {
-            val imageModel: Any = "$IMG_URL/${pokemon.id}.png"
+            val imageModel: Any = "$IMG_URL${pokemon.id}.png"
             Box(
                 modifier = Modifier.fillMaxWidth(),
             ) {
@@ -119,11 +119,11 @@ fun StatelessDetailPokemon(
                 Box(
                     modifier = Modifier
                         .padding(bottom = 8.dp)
-                        .background(color = Color(0xFFE8DDF8), RoundedCornerShape(4.dp))
+                        .background(color = MaterialTheme.colorScheme.secondary, RoundedCornerShape(4.dp))
                         .padding(horizontal = 8.dp, vertical = 4.dp),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text(pokemon.types, style = MaterialTheme.typography.labelLarge)
+                    Text(pokemon.types, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onPrimary)
                 }
                 Text(
                     text = pokemon.name,

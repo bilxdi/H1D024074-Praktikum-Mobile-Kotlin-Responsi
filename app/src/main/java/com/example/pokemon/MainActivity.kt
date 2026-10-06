@@ -23,24 +23,24 @@ class MainActivity : ComponentActivity() {
             PokemonTheme {
                 val navController = rememberNavController()
                 val pokemonViewModel: PokemonViewModel = viewModel()
-                NavHost(navController = navController, startDestination = "daftar_produk") {
-                    composable("daftar_produk") {
+                NavHost(navController = navController, startDestination = "daftar_pokemon") {
+                    composable("daftar_pokemon") {
                         DaftarPokemonScreen(
                             navController = navController,
                             viewModel = pokemonViewModel
                         )
                     }
                     composable(
-                        route = "detail/{productId}",
+                        route = "detail/{pokemonId}",
                         arguments = listOf(
-                            navArgument("productId") {
+                            navArgument("pokemonId") {
                                 type = NavType.IntType
                             }
                         )
                     ) { backStackEntry ->
-                        val productId = backStackEntry.arguments?.getInt("productId") ?: 0
+                        val pokemonId = backStackEntry.arguments?.getInt("pokemonId") ?: 0
                         DetailPokemonScreen(
-                            productId = productId,
+                            pokemonId = pokemonId,
                             navController = navController,
                             viewModel = pokemonViewModel
                         )

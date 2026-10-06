@@ -27,12 +27,24 @@ class PokemonViewModel : ViewModel() {
     private fun fetchData() {
         viewModelScope.launch {
             _uiState.value = PokemonUiState.Loading
-            try {
-                val pokemonResponse = ApiClient.instance.getPokemon()
 
-                _uiState.value = PokemonUiState.Success(
-                    pokemon = pokemonResponse
-                )
+            try {
+                val list = ApiClient.instance.getPokemonList()
+
+                val pokemonResponse = list.results.map { item ->
+                    val d = ApiClient.instance.getPokemonDetail(item.name)
+                    Pokemon(
+                        id = d.id,
+                        name = d.name,
+                        img = "",
+                        types = d.types.joinToString(", ") { it.type.name },
+                        height = d.height,
+                        weight = d.weight,
+                        experience = d.baseExperience ?: 0
+                    )
+                }
+
+                _uiState.value = PokemonUiState.Success(pokemon = pokemonResponse)
 
             } catch (e: Exception) {
                 _uiState.value = PokemonUiState.Error(

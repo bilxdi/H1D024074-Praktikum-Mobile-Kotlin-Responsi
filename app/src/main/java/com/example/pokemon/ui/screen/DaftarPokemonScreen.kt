@@ -159,7 +159,7 @@ fun PokemonItemCard(pokemon: Pokemon, onClick: () -> Unit) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
-            val imageModel: Any = "$IMG_URL/${pokemon.id}.png"
+            val imageModel: Any = "$IMG_URL${pokemon.id}.png"
             Box(
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -190,7 +190,7 @@ fun PokemonItemCard(pokemon: Pokemon, onClick: () -> Unit) {
             Text(
                 text = pokemon.types,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.tertiary
             )
         }
     }
