@@ -7,8 +7,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface ApiInterface {
-    @GET("data/products.json")
-    suspend fun getProducts(): List<Pokemon>
+    @GET("data/.json")
+    suspend fun getPokemon(): List<Pokemon>
 }
 
 object ApiClient {

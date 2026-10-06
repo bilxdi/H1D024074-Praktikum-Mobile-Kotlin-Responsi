@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 sealed interface PokemonUiState {
     object Loading : PokemonUiState
-    data class Success(val products: List<Pokemon>) : PokemonUiState
+    data class Success(val pokemon: List<Pokemon>) : PokemonUiState
     data class Error(val message: String) : PokemonUiState
 }
 
@@ -28,10 +28,10 @@ class PokemonViewModel : ViewModel() {
         viewModelScope.launch {
             _uiState.value = PokemonUiState.Loading
             try {
-                val pokemonResponse = ApiClient.instance.getProducts()
+                val pokemonResponse = ApiClient.instance.getPokemon()
 
                 _uiState.value = PokemonUiState.Success(
-                    products = pokemonResponse
+                    pokemon = pokemonResponse
                 )
 
             } catch (e: Exception) {
