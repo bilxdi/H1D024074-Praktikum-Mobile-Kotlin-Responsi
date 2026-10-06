@@ -134,6 +134,11 @@ fun StatelessDetailPokemon(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
+                    text = "Id: ${pokemon.id}",
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
                     text = "Tipe: ${pokemon.types}",
                     style = MaterialTheme.typography.bodyLarge,
                 )

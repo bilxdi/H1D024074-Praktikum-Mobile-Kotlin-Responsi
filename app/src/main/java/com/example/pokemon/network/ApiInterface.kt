@@ -1,6 +1,5 @@
 package com.example.pokemon.network
 
-import com.example.pokemon.data.model.Pokemon
 import com.example.pokemon.util.PokemonConstants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

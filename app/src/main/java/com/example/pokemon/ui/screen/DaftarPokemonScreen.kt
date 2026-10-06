@@ -178,7 +178,7 @@ fun PokemonItemCard(pokemon: Pokemon, onClick: () -> Unit) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = pokemon.name,
+                text = "${pokemon.id}. ${pokemon.name}",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
